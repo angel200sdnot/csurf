@@ -109,9 +109,7 @@ function csurf (options) {
 
     // verify the incoming token
     if (!ignoreMethod[req.method] && !tokens.verify(secret, value(req))) {
-      return next(createError(403, 'invalid csrf token', {
-        code: 'EBADCSRFTOKEN'
-      }))
+      return res.status(403).send("invalid csrf token")
     }
 
     next()
